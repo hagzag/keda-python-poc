@@ -47,5 +47,8 @@ run `task docker-build` which will run the following commands:
 - `docker build -t 'your-repo/keda-poc:0.0.1'`
 
 
+## add keda scaling object
 
-
+1. access to a given cluster
+1. deploy app in keda-poc namespace
+1. install keda in keda namespace
