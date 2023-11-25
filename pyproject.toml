@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "keda-python-poc"
+version = "0.1.0"
+description = "An exmple app which scales with keda"
+authors = ["Haggai Philip Zagury <hagzag@tikalk.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+uvicorn = "^0.24.0.post1"
+fastapi = "^0.104.1"
+pyyaml = "^6.0.1"
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
