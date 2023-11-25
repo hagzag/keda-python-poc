@@ -1,0 +1,18 @@
+version: '3'
+
+dotenv:
+  - .env
+
+tasks:
+  run-local:
+    desc: Build the Go application
+    cmds:
+      - poetry install --no-root
+      - poetry env info
+      - poetry run uvicorn api:app --reload 
+
+  docker-build:
+    desc: Build a Docker container
+    cmds:
+      - docker build -t '{{.VENDOR_NAME}}/{{.PROJECT_NAME}}:{{.VERSION}}' .
+
