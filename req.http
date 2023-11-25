@@ -1,0 +1,15 @@
+# used with vscode rest-client https://open-vsx.org/extension/humao/rest-client
+
+###
+# get replica count
+###
+GET http://localhost:8000/scale HTTP/1.1
+content-type: application/json
+
+###
+# set replica count
+###
+POST http://localhost:8000/scale HTTP/1.1
+content-type: application/json
+
+{"desiredReplicas": 7}
