@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: keda-poc
+  name: keda-poc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keda-poc
+  template:
+    metadata:
+      labels:
+        app: keda-poc
+    spec:
+      containers:
+      - image: docker.io/hagzag/keda-py:latest-8
+        name: keda-py
+        ports:
+        - name: http
+          containerPort: 5000
+        resources: {}

@@ -20,6 +20,7 @@ dotenv: [ '.env' ]
 silent: true
 
 tasks:
+
   run-local:
     desc: Build the Go application
     cmds:
@@ -32,6 +33,27 @@ tasks:
     cmds:
       - docker build -t '{{.VENDOR_NAME}}/{{.PROJECT_NAME}}:{{.VERSION}}' .
 
+  deploy_keda:
+    # internal: true
+    desc: install keda
+    cmds:
+      - helm repo add kedacore https://kedacore.github.io/charts
+      - helm upgrade --install keda kedacore/keda --namespace keda --create-namespace
+ 
+  deploy_demo_app:
+    # internal: true
+    desc: install demo_app
+    cmds:
+      - kubectl apply -k ./deploy
+
+  launch_demo:
+    internal: true
+    desc: run-demo
+    cmds:
+      - task: deploy_keda
+      - task: deploy_demo_app
+
+  # utils
   clear:
     internal: true
     cmds:
@@ -40,3 +62,4 @@ tasks:
   default:
     cmds:
       - task: clear
+      - task: launch_demo
