@@ -14,6 +14,11 @@ class ScaleResponse(BaseModel):
 class ScaleRequest(BaseModel):
     desiredReplicas: conint(ge=0, le=9)  # Constrained int between 0 and 9
 
+@app.get("/health")
+async def health_check():
+    # Simple health check endpoint
+    return {"status": "OK"}
+
 @app.get("/scale", response_model=ScaleResponse)
 def get_scale():
     return ScaleResponse(desiredReplicas=current_scale)

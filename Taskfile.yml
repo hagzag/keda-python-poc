@@ -22,11 +22,18 @@ silent: true
 tasks:
 
   run-local:
-    desc: Build the Go application
+    desc: Build the Python - api / master application
     cmds:
       - poetry install --no-root
       - poetry env info
       - poetry run uvicorn api:app --reload 
+
+  run-worker-local:
+    desc: Build the Python - worker application
+    cmds:
+      - poetry install --no-root
+      - poetry env info
+      - poetry run uvicorn worker:app --reload 
 
   docker-build:
     desc: Build a Docker container
