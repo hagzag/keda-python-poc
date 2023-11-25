@@ -46,4 +46,6 @@ run `task docker-build` which will run the following commands:
 
 - `docker build -t 'your-repo/keda-poc:0.0.1'`
 
-## add keda scaling object
+
+
+
