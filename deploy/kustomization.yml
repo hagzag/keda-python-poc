@@ -5,10 +5,13 @@ resources:
 - ns.yaml
 - api-deployment.yaml
 - api-service.yaml
+# - api-worker.yaml
+# - scale-object.yaml
 
 namespace: keda-poc
 
 images:
   - name: docker.io/hagzag/keda-py
     newName: ghcr.io/hagzag/keda-poc
-    newTag: v1.0.1
+    newTag: latest-main
+    # newTag: latest-main@sha256:7f87485b8308a864fe6fc9def69efb2758539f9b98286d5040383e06f9f3fa03

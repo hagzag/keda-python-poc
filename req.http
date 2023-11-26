@@ -12,4 +12,34 @@ content-type: application/json
 POST http://localhost:8000/scale HTTP/1.1
 content-type: application/json
 
-{"desiredReplicas": 7}
+{"desiredReplicas": 9}
+
+###
+# healthcheck
+###
+GET http://localhost:8000/health HTTP/1.1
+content-type: application/json
+
+###
+# fastapi metrics
+###
+GET http://localhost:8000/metrics HTTP/1.1
+content-type: application/json
+
+###
+# get replica count
+###
+GET http://localhost:8000/jobs/get HTTP/1.1
+content-type: application/json
+
+###
+# set job replica count
+###
+POST http://localhost:8000/jobs/set?count=5&action=set HTTP/1.1
+content-type: application/json
+
+###
+# increase job replica count
+###
+POST http://localhost:8000/jobs/set?count=10&action=increase HTTP/1.1
+content-type: application/json
