@@ -17,11 +17,8 @@ RUN poetry install --no-interaction --no-ansi
 # Copy the content of the local src directory to the working directory
 COPY . /usr/src/app
 
-# Specify the command to run on container start
+# api
 CMD [ "poetry", "run", "uvicorn", "api:app", "--host", "0.0.0.0", "--port", "5000"]
-<<<<<<< Updated upstream
-=======
 
 # worker
 # CMD [ "poetry", "run", "uvicorn", "worker:app", "--host", "0.0.0.0", "--port", "5000"]
->>>>>>> Stashed changes
