@@ -21,12 +21,17 @@ silent: true
 
 tasks:
 
+
   run-local:
     desc: Build the Python - api / master application
     cmds:
       - poetry install --no-root
       - poetry env info
       - poetry run uvicorn api:app --reload 
+  
+  run-api-local:
+    cmds:
+      - task: run-local
 
   run-worker-local:
     desc: Build the Python - worker application
@@ -52,6 +57,18 @@ tasks:
     desc: install demo_app
     cmds:
       - kubectl apply -k ./deploy
+
+  deploy_monitor:
+    desc: deploy prometheus
+    cmds:
+      - helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+      - helm repo update
+      - helm upgrade prometheus --install  -f ./deploy/prometheus/values.yaml prometheus-community/prometheus --namespace keda-poc
+
+  port_forward_monitor:
+    desc: port-forward to prometheus
+    cmds:
+      - kubectl port-forward -n keda-poc svc/prometheus-server 9000:80
 
   launch_demo:
     internal: true

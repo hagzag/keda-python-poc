@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, conint
+from prometheus_fastapi_instrumentator import Instrumentator
 
 import os
 
@@ -8,6 +9,8 @@ app = FastAPI()
 # Global variable to store the current scale
 current_scale = 3
 
+# Instrument the app
+Instrumentator().instrument(app).expose(app)
 class ScaleResponse(BaseModel):
     desiredReplicas: int
 

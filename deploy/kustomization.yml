@@ -11,4 +11,4 @@ namespace: keda-poc
 images:
   - name: docker.io/hagzag/keda-py
     newName: ghcr.io/hagzag/keda-poc
-    newTag: v1.0.1
+    newTag: latest

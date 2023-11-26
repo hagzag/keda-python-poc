@@ -34,7 +34,7 @@ yiedls: `{"desiredReplicas":9}`
 
 ## Run localy
 
-run `task run-local` which will run the following commands for you:
+run `task run-api-local` which will run the following commands for you:
 
 - poetry install --no-root
 - poetry env info
@@ -49,6 +49,10 @@ run `task docker-build` which will run the following commands:
 
 ## add keda scaling object
 
-1. access to a given cluster
-1. deploy app in keda-poc namespace
-1. install keda in keda namespace
+1. access to a given cluster - use a "Palygrond" cluster
+1. install keda in keda namespace - `task deploy_keda`
+1. deploy app in keda-poc namespace `task deploy_demo_app`
+
+## our app:
+
+- ./apy.py  `task run-api-local`
