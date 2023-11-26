@@ -11,6 +11,7 @@ current_scale = 3
 
 # Instrument the app
 Instrumentator().instrument(app).expose(app)
+
 class ScaleResponse(BaseModel):
     desiredReplicas: int
 

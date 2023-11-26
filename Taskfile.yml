@@ -58,6 +58,11 @@ tasks:
     cmds:
       - kubectl apply -k ./deploy
 
+  port_forward_demo_app:
+    desc: port-forward to demo_app
+    cmds:
+      - kubectl port-forward -n keda-poc svc/api 8000:80 -n keda-poc
+
   deploy_monitor:
     desc: deploy prometheus
     cmds:
