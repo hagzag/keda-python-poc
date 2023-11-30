@@ -17,7 +17,7 @@ vars:
 
 dotenv: [ '.env' ]
 
-silent: true
+# silent: true
 
 tasks:
 

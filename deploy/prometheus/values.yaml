@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=prometheus-values.schema.json
+# yaml-language-server: $schema=values.schema.json
 # Default values for prometheus.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -743,6 +743,7 @@ serverFiles:
 
     scrape_configs:
       - job_name: keda-poc
+        namespace: keda-poc
         static_configs:
           - targets:
             - api:80

@@ -5,8 +5,8 @@ resources:
 - ns.yaml
 - api-deployment.yaml
 - api-service.yaml
-# - api-worker.yaml
-# - scale-object.yaml
+- worker-deployment.yaml
+- scale-object.yaml
 
 namespace: keda-poc
 
