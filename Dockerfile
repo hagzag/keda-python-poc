@@ -20,3 +20,5 @@ COPY . /usr/src/app
 # api
 CMD [ "poetry", "run", "uvicorn", "api:app", "--host", "0.0.0.0", "--port", "5000"]
 
+# worker
+# CMD [ "poetry", "run", "uvicorn", "worker:app", "--host", "0.0.0.0", "--port", "5000"]

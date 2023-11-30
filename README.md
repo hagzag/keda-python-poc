@@ -40,12 +40,17 @@ run `task run-api-local` which will run the following commands for you:
 - poetry env info
 - poetry run uvicorn api:app --reload 
 
-## Build a coontainer
+run `task run-worker-local` which will run the following commands for you:
+
+- poetry install --no-root
+- poetry env info
+- poetry run uvicorn worker:app --reload 
+
+## Build a container
 
 run `task docker-build` which will run the following commands: 
 
 - `docker build -t 'your-repo/keda-poc:0.0.1'`
-
 
 ## add keda scaling object
 
@@ -53,6 +58,11 @@ run `task docker-build` which will run the following commands:
 1. install keda in keda namespace - `task deploy_keda`
 1. deploy app in keda-poc namespace `task deploy_demo_app`
 
+1. create scaling object
+1. trigger a scale up event
+1. trigger a scale down event
+
 ## our app:
 
 - ./apy.py  `task run-api-local`
+- ./worker.py `task run-worker-local`

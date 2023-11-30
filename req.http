@@ -26,3 +26,20 @@ content-type: application/json
 GET http://localhost:8000/metrics HTTP/1.1
 content-type: application/json
 
+###
+# get replica count
+###
+GET http://localhost:8000/jobs/get HTTP/1.1
+content-type: application/json
+
+###
+# set job replica count e.g. `count=5&action=set`
+###
+POST http://localhost:8000/jobs/set?count=5&action=set HTTP/1.1
+content-type: application/json
+
+###
+# increase job replica count e.g. `count=10&action=increase`
+###
+POST http://localhost:8000/jobs/set?count=10&action=increase HTTP/1.1
+content-type: application/json
