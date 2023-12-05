@@ -4,7 +4,7 @@
 # get replica count
 ###
 GET http://localhost:8000/scale HTTP/1.1
-content-type: application/json
+content-type: text/plain
 
 ###
 # set replica count
@@ -12,7 +12,7 @@ content-type: application/json
 POST http://localhost:8000/scale HTTP/1.1
 content-type: application/json
 
-{"desiredReplicas": 9}
+{"desiredReplicas": 4}
 
 ###
 # healthcheck
