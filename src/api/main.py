@@ -18,6 +18,10 @@ class ScaleResponse(BaseModel):
 class ScaleRequest(BaseModel):
     desiredReplicas: conint(ge=0, le=9)  # Constrained int between 0 and 9
 
+@app.get("/")
+def get_scale():
+    return Response(content=str("OK"), media_type="text/plain")
+
 @app.get("/health")
 async def health_check():
     # Simple health check endpoint
@@ -25,15 +29,12 @@ async def health_check():
 
 @app.get("/scale", response_model=ScaleResponse)
 def get_scale():
-    # return ScaleResponse(desiredReplicas=current_scale)
     return Response(content=str(current_scale), media_type="text/plain")
-
 
 @app.post("/scale", response_model=ScaleResponse)
 def set_scale(scale_request: ScaleRequest):
     global current_scale
     current_scale = scale_request.desiredReplicas
-    # return ScaleResponse(desiredReplicas=current_scale)
     return Response(content=str(current_scale), media_type="text/plain")
 
 

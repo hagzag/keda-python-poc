@@ -21,24 +21,30 @@ dotenv: [ '.env' ]
 
 tasks:
 
-
-  run-local:
+  run-api-local:
     desc: Build the Python - api / master application
+    dir: '{{.USER_WORKING_DIR}}'
     cmds:
       - poetry install --no-root
       - poetry env info
-      - poetry run uvicorn api:app --reload 
+      - poetry run uvicorn src.api.main:app --port 9090 --reload 
   
-  run-api-local:
+  run-grpc-server:
+    desc: serve the protobug for the scaler
+    dir: '{{.USER_WORKING_DIR}}'
+    env:
+      LOG_LEVEL: "DEBUG"
+      SCALER_API_EP: http://localhost:9090/scale
+      GRPC_PORT: 50052
     cmds:
-      - task: run-local
+      - poetry run python src/custom_scaler/grpc_server.py 
 
   run-worker-local:
     desc: Build the Python - worker application
     cmds:
       - poetry install --no-root
       - poetry env info
-      - poetry run uvicorn worker:app --reload 
+      - poetry run uvicorn src.worker.main:app --port 8080 --reload 
 
   docker-build:
     desc: Build a Docker container

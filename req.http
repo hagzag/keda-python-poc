@@ -3,21 +3,39 @@
 ###
 # get replica count
 ###
-GET http://localhost:8000/scale HTTP/1.1
+GET http://localhost:9090/ HTTP/1.1
 content-type: text/plain
 
 ###
-# set replica count
+# set (POST) replica count
 ###
-POST http://localhost:8000/scale HTTP/1.1
+POST http://localhost:9090/scale HTTP/1.1
 content-type: application/json
 
-{"desiredReplicas": 4}
+{"desiredReplicas": 7}
+
+###
+# get (GET) replica count via `/scale` 
+###
+GET http://localhost:9090/scale HTTP/1.1
+content-type: text/plain
+
+###
+# grpc cant be tested in this file ::shrug::
+###
+# GET http://localhost:50051/IsActive HTTP/1.1
+# content-type: grpc
+# 
+# use grpcurl
+# grpcurl -plaintext localhost:50051 externalscaler.ExternalScaler.IsActive
+# {
+#   "result": true
+# }
 
 ###
 # healthcheck
 ###
-GET http://localhost:8000/health HTTP/1.1
+GET http://localhost:9090/health HTTP/1.1
 content-type: application/json
 
 ###
