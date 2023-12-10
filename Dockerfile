@@ -18,7 +18,10 @@ RUN poetry install --no-interaction --no-ansi
 COPY . /usr/src/app
 
 # api
-CMD [ "poetry", "run", "uvicorn", "api:app", "--host", "0.0.0.0", "--port", "5000"]
+CMD [ "poetry", "run", "uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "9090"]
 
 # worker
-# CMD [ "poetry", "run", "uvicorn", "worker:app", "--host", "0.0.0.0", "--port", "5000"]
+# CMD [ "poetry", "run", "uvicorn", "src.worker.main:app", "--host", "0.0.0.0", "--port", "8080"]
+
+# worker
+# CMD [ "poetry", "run", "python", "src/custom_scaler/grpc_server.py"]
