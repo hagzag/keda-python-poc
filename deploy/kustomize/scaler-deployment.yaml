@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: scaler
+  name: scaler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scaler
+  template:
+    metadata:
+      labels:
+        app: scaler
+    spec:
+      containers:
+      - image: docker.io/hagzag/keda-py:v1.3.0
+        name: scaler
+        command: [ "poetry", "run", "python", "src/custom_scaler/grpc_server.py"]
+        env:
+        - name: LOG_LEVEL
+          value: "DEBUG"
+        - name: SCALER_API_EP
+          value: http://api/scale
+        # - name: GRPC_PORT
+        #   value: 50052 # default it 50051
+        ports:
+        - name: grpc
+          containerPort: 50051
+        resources: {}

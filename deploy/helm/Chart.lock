@@ -1,0 +1,21 @@
+dependencies:
+- name: keda
+  repository: https://kedacore.github.io/charts
+  version: 2.12.0
+- name: prometheus
+  repository: https://prometheus-community.github.io/helm-charts
+  version: 25.8.1
+- name: metrics-server
+  repository: https://kubernetes-sigs.github.io/metrics-server
+  version: 3.11.0
+- name: common
+  repository: ""
+  version: 0.1.0
+- name: common
+  repository: ""
+  version: 0.1.0
+- name: common
+  repository: ""
+  version: 0.1.0
+digest: sha256:5106c37329d829d78e4fe15cdfe842a275f59f999c9e89f47597d4786ad04498
+generated: "2023-12-10T20:41:45.122876+02:00"

@@ -62,7 +62,27 @@ tasks:
     # internal: true
     desc: install demo_app
     cmds:
-      - kubectl apply -k ./deploy
+      - kubectl apply -k ./deploy/kustomize
+  
+  helm_deploy_demo_app:
+    # internal: true
+    desc: install demo_app
+    cmds:
+      - helm dependency update --skip-refresh ./deploy/helm
+      - helm upgrade keda-poc --install --debug --namespace keda-poc --create-namespace ./deploy/helm
+  
+  helm_deploy_metrics_server:
+    # internal: true
+    desc: install demo_app
+    cmds:
+      - helm dependency update --skip-refresh ./deploy/metrics-server
+      - helm upgrade metrics-server --install --debug --namespace kube-system ./deploy/metrics-server
+
+  cleanup_demo_app:
+    # internal: true
+    desc: install demo_app
+    cmds:
+      - kubectl delete -k ./deploy/kustomize
 
   port_forward_demo_app:
     desc: port-forward to demo_app

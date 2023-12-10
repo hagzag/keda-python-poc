@@ -1,0 +1,69 @@
+# Default values for wrapper.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  image:
+    repository: ghcr.io/hagzag/keda-poc
+    tag: v1.4.0 
+
+scaledObject:
+  enabled: true
+  # want the worker name to be set see worker.fullnameOverride: *worker_name
+  scaleTargetRefName: &worker_name worker
+
+custom-scaler:
+  enabled: true
+  fullnameOverride: scaler
+  nameOverride: scaler
+  service: 
+    enabled: true
+    port: 50051
+  args:
+  - poetry
+  - run
+  - python 
+  - src/custom_scaler/grpc_server.py
+
+api:
+  enabled: true
+  fullnameOverride: api
+  service: 
+    enabled: true
+    port: 9090
+  args:
+  - poetry
+  - run
+  - uvicorn
+  - src.api.main:app
+  - --host
+  - 0.0.0.0
+  - --port 
+  - 9090
+
+worker:
+  enabled: true
+  fullnameOverride: *worker_name
+  service: 
+    enabled: true
+    port: 8080
+  replicaCount: 0
+  args:
+  - poetry
+  - run
+  - uvicorn
+  - src.worker.main:app
+  - --host
+  - 0.0.0.0
+  - --port 
+  - 8080
+
+metrics-server:
+  enabled: false
+
+keda:
+  enabled: false
+
+prometheus:
+  enabled: false
+

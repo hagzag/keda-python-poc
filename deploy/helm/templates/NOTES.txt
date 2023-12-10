@@ -1,0 +1,11 @@
+{{- if .Values.api.enabled }}
+Installing api in {{ .Release.namespace }}
+{{- end }}
+
+{{- if .Values.worker.enabled }}
+Installing worker in {{ .Release.namespace }}
+{{- end }}
+
+{{- if ".Values.custom-scaler.enabled" }}
+Installing custom-scaler in {{ .Release.namespace }}
+{{- end }}

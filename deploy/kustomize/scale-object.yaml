@@ -1,0 +1,21 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: worker-scaler
+spec:
+  scaleTargetRef:
+    name: worker  # Name of the deployment you want to scale
+  pollingInterval: 2       # Optional. Default: 30 seconds
+  # pollingInterval: 10       # Optional. Default: 30 seconds
+  cooldownPeriod:  30       # Optional. Default: 300 seconds
+  minReplicaCount: 1        # Optional. Default: 0
+  maxReplicaCount: 9        # Optional. Default: 9
+  triggers:
+    - type: external
+      metadata:
+        # URL of the endpoint that returns the scaling data
+        scalerAddress: "http://scaler.keda-poc.svc.cluster.local"
+        metricName: "desired_replica_count"
+        # method: "GET"
+        # timeout: "3"  # Optional. HTTP timeout in seconds
+        #value: "3"  # Target value for `desiredReplicas`

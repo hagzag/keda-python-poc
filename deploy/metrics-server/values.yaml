@@ -1,0 +1,6 @@
+metrics-server:
+  nameOverride: metrics-server
+  replicas: 1
+  podDisruptionBudget:
+    enabled: true
+    maxUnavailable: 1
