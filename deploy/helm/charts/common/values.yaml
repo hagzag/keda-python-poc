@@ -14,6 +14,12 @@ image:
   pullPolicy: IfNotPresent
   tag: ""
 
+env: {}
+  # - name: LOG_LEVEL
+  #   value: "INFO"
+  # - name: SCALER_API_EP
+  #   value: "http://api:9090/scale"
+
 args:
   - poetry
   - run

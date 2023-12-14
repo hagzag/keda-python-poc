@@ -31,6 +31,11 @@ async def health_check():
 def get_scale():
     return Response(content=str(current_scale), media_type="text/plain")
 
+@app.get("/scaleJson", response_model=ScaleResponse)
+def get_scale_json():
+    return ScaleResponse(desiredReplicas=current_scale)
+
+
 @app.post("/scale", response_model=ScaleResponse)
 def set_scale(scale_request: ScaleRequest):
     global current_scale
