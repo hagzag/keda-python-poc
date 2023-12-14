@@ -9,12 +9,12 @@ spec:
     name: {{ .Values.scaledObject.scaleTargetRefName }}
   pollingInterval: {{ .Values.scaledObject.pollingInterval | default 30 }}
   cooldownPeriod:  {{ .Values.scaledObject.cooldownPeriod | default 300 }}
-  # minReplicaCount: {{ .Values.scaledObject.minReplicaCount | default 2 }}        # Optional. Default: 0
-  # maxReplicaCount: {{ .Values.scaledObject.maxReplicaCount | default 9 }}
+  minReplicaCount: {{ .Values.scaledObject.minReplicaCount | default 2 }}        # Optional. Default: 0
+  maxReplicaCount: {{ .Values.scaledObject.maxReplicaCount | default 9 }}
   triggers:
   {{- if eq .Values.scaledObject.triggerType "external"}}
     - type: {{ .Values.scaledObject.triggerType }}
-      metricType: Value
+      # metricType: Value
       metadata:
         scalerAddress: {{ default .Values.scaledObject.scalerAddress }}
   {{- end }}
@@ -22,7 +22,8 @@ spec:
     - type: {{ .Values.scaledObject.triggerType }}
       metricType: Value
       metadata:
-        targetValue: "0"
+        targetValue: "1"
+        activationTargetValue: "1"
         url: {{ default .Values.scaledObject.scalerAddress }}
         valueLocation: 'desiredReplicas'
   {{- end }}
